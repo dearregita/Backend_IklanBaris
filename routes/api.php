@@ -17,7 +17,12 @@ Route::post('login', 'UserController@login');
 Route::get('/book/{limit}/{offset}', 'BookController@getAll');
 
 Route::middleware(['jwt.verify'])->group(function(){
-    Route::get('barang', 'BarangController@barang');
-    Route::get('barangall', 'BarangController@barangAuth');
     Route::get('user', 'UserController@getAll');
+
+    //barang iklan
+	Route::get('barang', "BarangController@index"); //read pelanggaran
+	// Route::get('barang/{limit}/{offset}', "PelanggaranController@getAll"); read pelanggaran
+	Route::post('barang', 'BarangController@store'); //create pelanggaran
+	Route::put('barang/{id}', "BarangController@update"); //update pelanggaran
+	Route::delete('barang/{id}', "BarangController@delete"); //delete pelanggaran
 });
